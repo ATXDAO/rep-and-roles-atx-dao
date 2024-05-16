@@ -112,6 +112,8 @@ export function useGetTokensProperties(repTokensInstance: any, tokenIds: bigint[
 }
 
 function useFetches(uris: string[]) {
+  console.log(uris);
+
   const [responses, setResponses] = useState<any[]>([]);
 
   const refetch = useCallback(async () => {
@@ -190,8 +192,6 @@ export const useRepTokens = (tokenIds: bigint[], address?: string, replacementTy
     }
   }
 
-  console.log(addresses);
-
   // const { addresses } = useMemo(() => {
   //   const addresses: string[] = [];
 
@@ -231,9 +231,13 @@ export const useRepTokens = (tokenIds: bigint[], address?: string, replacementTy
 
   const { uris } = useUris(repTokensInstance, tokenIds);
 
+  console.log(uris);
+
   for (let i = 0; i < uris.length; i++) {
     uris[i] = uris[i].replace("ipfs://", replacement[replacementType]);
   }
+
+  console.log(uris);
 
   const { responses } = useFetches(uris);
 

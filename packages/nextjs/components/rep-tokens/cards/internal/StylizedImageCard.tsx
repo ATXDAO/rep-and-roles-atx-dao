@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { Color } from "./deprecated/Stylized";
 
 export interface ImageCardPropsInternal {
@@ -30,13 +30,9 @@ const cardSizeMap = {
 };
 
 export const StylizedImageCard = ({ src, alt = "Token Image", size = "base" }: ImageCardPropsInternal) => {
-  return (
-    <div className={`rounded-lg bg-base-300 ${cardSizeMap[size]}`}>
-      {src ? (
-        <Image className="rounded-lg mx-auto" src={src} alt={alt} width={sizeMap[size]} height={sizeMap[size]} />
-      ) : (
-        <></>
-      )}
-    </div>
-  );
+  {
+    /* eslint-disable-next-line @next/next/no-img-element */
+  }
+  const o = <img className="rounded-lg mx-auto" src={src} alt={alt} width={sizeMap[size]} height={sizeMap[size]} />;
+  return <div className={`rounded-lg bg-base-300 ${cardSizeMap[size]}`}>{src ? o : <></>}</div>;
 };

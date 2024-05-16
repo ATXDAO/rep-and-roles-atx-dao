@@ -1,6 +1,10 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback, //useEffect,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,7 +14,9 @@ import { useRepTokens } from "./rep-tokens/hooks/Hooks";
 import { useAccount } from "wagmi";
 import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
-import { useOutsideClick, useScaffoldContractRead } from "~~/hooks/scaffold-eth";
+import {
+  useOutsideClick, //useScaffoldContractRead
+} from "~~/hooks/scaffold-eth";
 
 type HeaderMenuLink = {
   label: string;
@@ -68,7 +74,9 @@ export const HeaderMenuLinks = ({ menuLinks }: Props) => {
  * Site header
  */
 export const Header = () => {
-  const [instancedHeaderLinks, setInstancedHeaderLinks] = useState(menuLinks);
+  const [
+    instancedHeaderLinks, //, setInstancedHeaderLinks
+  ] = useState(menuLinks);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
@@ -79,31 +87,31 @@ export const Header = () => {
 
   const { address } = useAccount();
 
-  const { tokens } = useRepTokens([BigInt(0), BigInt(1), BigInt(2)], address, "nftstorage");
+  const { tokens } = useRepTokens([BigInt(0), BigInt(1)], address, "nftstorage");
 
   const widgetComponents: ReputationComponent[] = ["Balance", "Image"];
 
-  const claimableHatId2 = "26960358055844173566950915356986848857678722938711691764997516427264";
+  // const claimableHatId2 = "26960358055844173566950915356986848857678722938711691764997516427264";
 
-  const { data: balanceOfClaimableHat2 } = useScaffoldContractRead({
-    contractName: "Hats",
-    functionName: "balanceOf",
-    args: [address, BigInt(claimableHatId2)],
-  });
+  // const { data: balanceOfClaimableHat2 } = useScaffoldContractRead({
+  //   contractName: "Hats",
+  //   functionName: "balanceOf",
+  //   args: [address, BigInt(claimableHatId2)],
+  // });
 
-  useEffect(() => {
-    if (Number(balanceOfClaimableHat2) > 0) {
-      console.log("im set");
-      setInstancedHeaderLinks([
-        ...instancedHeaderLinks,
-        {
-          label: "Steward's Hideout",
-          href: "/stewards-hideout",
-        },
-      ]);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [balanceOfClaimableHat2]);
+  // useEffect(() => {
+  //   if (Number(balanceOfClaimableHat2) > 0) {
+  //     console.log("im set");
+  //     setInstancedHeaderLinks([
+  //       ...instancedHeaderLinks,
+  //       {
+  //         label: "Steward's Hideout",
+  //         href: "/stewards-hideout",
+  //       },
+  //     ]);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [balanceOfClaimableHat2]);
 
   return (
     <div className="sticky lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary px-0 sm:px-2">

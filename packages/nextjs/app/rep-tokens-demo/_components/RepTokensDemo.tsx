@@ -3,39 +3,43 @@
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useAccount } from "wagmi";
-import { ReputationTokenCard } from "~~/components/rep-tokens/cards/ReputationTokenCard";
+// import { ReputationTokenCard } from "~~/components/rep-tokens/cards/ReputationTokenCard";
 import { ReputationTokenGroupCard } from "~~/components/rep-tokens/cards/ReputationTokenGroupCard";
 import { AddressCard } from "~~/components/rep-tokens/cards/token-properties/AddressCard";
-import { BalanceCard } from "~~/components/rep-tokens/cards/token-properties/BalanceCard";
-import { DescriptionCard } from "~~/components/rep-tokens/cards/token-properties/DescriptionCard";
-import { ImageCard } from "~~/components/rep-tokens/cards/token-properties/ImageCard";
-import { NameCard } from "~~/components/rep-tokens/cards/token-properties/NameCard";
-import { TokenTypeCard } from "~~/components/rep-tokens/cards/token-properties/TokenTypeCard";
-import { useGetRepToken, useRepTokens } from "~~/components/rep-tokens/hooks/Hooks";
-import { useScaffoldContract, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+// import { BalanceCard } from "~~/components/rep-tokens/cards/token-properties/BalanceCard";
+// import { DescriptionCard } from "~~/components/rep-tokens/cards/token-properties/DescriptionCard";
+// import { ImageCard } from "~~/components/rep-tokens/cards/token-properties/ImageCard";
+// import { NameCard } from "~~/components/rep-tokens/cards/token-properties/NameCard";
+// import { TokenTypeCard } from "~~/components/rep-tokens/cards/token-properties/TokenTypeCard";
+import {
+  //useGetRepToken,
+  useRepTokens,
+} from "~~/components/rep-tokens/hooks/Hooks";
+import {
+  useScaffoldContract, //, useScaffoldContractWrite
+} from "~~/hooks/scaffold-eth";
 
 export function RepTokensDemo() {
   const { address } = useAccount();
 
-  const { tokens: userTokens, refetchBalances: refetchUserBalances } = useRepTokens(
-    [BigInt(0), BigInt(1), BigInt(2)],
-    address,
-    "nftstorage",
-  );
+  const {
+    tokens: userTokens,
+    //refetchBalances: refetchUserBalances
+  } = useRepTokens([BigInt(0), BigInt(1)], address, "nftstorage");
 
   const { data: reputationTokens } = useScaffoldContract({ contractName: "ReputationTokens" });
-  const { token, refetchBalance } = useGetRepToken(address, BigInt(0), "nftstorage");
-  const { writeAsync: claim } = useScaffoldContractWrite({
-    contractName: "ReputationFaucet",
-    functionName: "claim",
-  });
+  // const { token, refetchBalance } = useGetRepToken(address, BigInt(0), "ipfs");
+  // const { writeAsync: claim } = useScaffoldContractWrite({
+  //   contractName: "ReputationFaucet",
+  //   functionName: "claim",
+  // });
 
-  const { data: faucet } = useScaffoldContract({ contractName: "ReputationFaucet" });
-  const { tokens: faucetTokens, refetchBalances: refetchFaucetBalances } = useRepTokens(
-    [BigInt(0), BigInt(1), BigInt(2)],
-    faucet?.address,
-    "nftstorage",
-  );
+  // const { data: faucet } = useScaffoldContract({ contractName: "ReputationFaucet" });
+  // const { tokens: faucetTokens, refetchBalances: refetchFaucetBalances } = useRepTokens(
+  //   [BigInt(0), BigInt(1), BigInt(2)],
+  //   faucet?.address,
+  //   "nftstorage",
+  // );
 
   return (
     <>
@@ -45,9 +49,9 @@ export function RepTokensDemo() {
           <Tab>Multi-Card w/ Overlay</Tab>
           <Tab>Small</Tab>
           <Tab>Widget</Tab>
-          <Tab>Single Card</Tab>
-          <Tab>Individual Components</Tab>
-          <Tab>Faucet</Tab>
+          {/* <Tab>Single Card</Tab>
+          <Tab>Individual Components</Tab> */}
+          {/* <Tab>Faucet</Tab> */}
         </TabList>
 
         <div className="py-1 space-y-5 flex flex-col justify-center items-center bg-[length:100%_100%] py-1 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">
@@ -88,7 +92,7 @@ export function RepTokensDemo() {
             />
           </TabPanel>
 
-          <TabPanel>
+          {/* <TabPanel>
             <p className="text-center text-4xl my-1">Single Card</p>
             <ReputationTokenCard
               token={token}
@@ -104,9 +108,9 @@ export function RepTokensDemo() {
             <DescriptionCard token={token} />
             <AddressCard token={token} />
             <TokenTypeCard token={token} />
-          </TabPanel>
+          </TabPanel> */}
 
-          <TabPanel>
+          {/* <TabPanel>
             <ReputationTokenGroupCard
               tokens={faucetTokens}
               components={["Balance", "Image"]}
@@ -126,7 +130,7 @@ export function RepTokensDemo() {
                 </button>
               }
             />
-          </TabPanel>
+          </TabPanel> */}
         </div>
       </Tabs>
     </>
