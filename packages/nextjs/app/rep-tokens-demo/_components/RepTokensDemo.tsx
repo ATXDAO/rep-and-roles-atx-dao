@@ -1,6 +1,6 @@
 "use client";
 
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+// import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useAccount } from "wagmi";
 // import { ReputationTokenCard } from "~~/components/rep-tokens/cards/ReputationTokenCard";
@@ -43,96 +43,12 @@ export function RepTokensDemo() {
 
   return (
     <>
-      <Tabs>
-        <TabList>
-          <Tab>Multi-Card</Tab>
-          <Tab>Multi-Card w/ Overlay</Tab>
-          <Tab>Small</Tab>
-          <Tab>Widget</Tab>
-          {/* <Tab>Single Card</Tab>
-          <Tab>Individual Components</Tab> */}
-          {/* <Tab>Faucet</Tab> */}
-        </TabList>
-
-        <div className="py-1 space-y-5 flex flex-col justify-center items-center bg-[length:100%_100%] py-1 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">
-          <TabPanel>
-            <p className="text-center text-4xl my-1">Multi-Card</p>
-            <ReputationTokenGroupCard
-              tokens={userTokens}
-              preChildren={<AddressCard address={reputationTokens?.address} />}
-            />
-          </TabPanel>
-
-          <TabPanel>
-            <p className="text-center text-4xl my-1">Multi-Card w/ Overlay</p>
-            <ReputationTokenGroupCard
-              tokens={userTokens}
-              isBalanceOverlayed={true}
-              preChildren={<AddressCard address={reputationTokens?.address} />}
-            />
-          </TabPanel>
-
-          <TabPanel>
-            <p className="text-center text-4xl  my-1">Small</p>
-            <ReputationTokenGroupCard
-              tokens={userTokens}
-              components={["Balance", "Image"]}
-              isBalanceOverlayed={true}
-              size="sm"
-            />
-          </TabPanel>
-
-          <TabPanel>
-            <p className="text-center text-4xl my-1">Widget</p>
-            <ReputationTokenGroupCard
-              tokens={userTokens}
-              components={["Balance", "Image"]}
-              isBalanceOverlayed={true}
-              size="xs"
-            />
-          </TabPanel>
-
-          {/* <TabPanel>
-            <p className="text-center text-4xl my-1">Single Card</p>
-            <ReputationTokenCard
-              token={token}
-              components={["Balance", "Image", "Name", "Description", "Address", "TokenType", "MaxMintAmountPerTx"]}
-            />
-          </TabPanel>
-
-          <TabPanel>
-            <p className="text-center text-2xl my-1">Individual Components</p>
-            <BalanceCard token={token} />
-            <ImageCard token={token} />
-            <NameCard token={token} />
-            <DescriptionCard token={token} />
-            <AddressCard token={token} />
-            <TokenTypeCard token={token} />
-          </TabPanel> */}
-
-          {/* <TabPanel>
-            <ReputationTokenGroupCard
-              tokens={faucetTokens}
-              components={["Balance", "Image"]}
-              isBalanceOverlayed={true}
-              preChildren={<p className="text-center text-4xl bg-base-200 rounded-lg my-1">Faucet</p>}
-              postChildren={
-                <button
-                  className="btn btn-primary btn-sm font-normal gap-1"
-                  onClick={async () => {
-                    await claim();
-                    await refetchUserBalances();
-                    await refetchFaucetBalances();
-                    await refetchBalance();
-                  }}
-                >
-                  Claim Tokens
-                </button>
-              }
-            />
-          </TabPanel> */}
-        </div>
-      </Tabs>
+      <div className="py-1 space-y-5 flex flex-col justify-center items-center bg-[length:100%_100%] py-1 px-5 sm:px-0 lg:py-auto max-w-[100vw]">
+        <ReputationTokenGroupCard
+          tokens={userTokens}
+          preChildren={<AddressCard address={reputationTokens?.address} />}
+        />
+      </div>
     </>
   );
 }
